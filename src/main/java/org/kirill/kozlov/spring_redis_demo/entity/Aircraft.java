@@ -6,12 +6,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.redis.core.RedisHash;
 
 import java.time.Instant;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@RedisHash
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Aircraft {
 
@@ -42,63 +44,4 @@ public class Aircraft {
     private Instant posUpdateTime;
     @JsonProperty("bds40_seen_time")
     private Instant bds40SeenTime;
-
-//    public Aircraft(String callsign, String reg, String flightno, String type,
-//                    int altitude, int heading, int speed,
-//                    double lat, double lon) {
-//
-//        this(null, callsign, "sqwk", reg, flightno, "route", type, "ct",
-//                altitude, heading, speed, 0, 0,
-//                lat, lon, 0D, 0D, 0D,
-//                false, true,
-//                Instant.now(), Instant.now(), Instant.now());
-//    }
-
-//    public void setLastSeenTime(long lastSeenTime) {
-//        this.lastSeenTime = Instant.ofEpochSecond(lastSeenTime);
-//    }
-//
-//    public void setPosUpdateTime(long posUpdateTime) {
-//        this.posUpdateTime = Instant.ofEpochSecond(posUpdateTime);
-//    }
-//
-//    public void setBds40SeenTime(long bds40SeenTime) {
-//        this.bds40SeenTime = Instant.ofEpochSecond(bds40SeenTime);
-//    }
-
-    public String getLastSeenTime() {
-        return lastSeenTime.toString();
-    }
-
-    public void setLastSeenTime(String lastSeenTime) {
-        if (null != lastSeenTime) {
-            this.lastSeenTime = Instant.parse(lastSeenTime);
-        } else {
-            this.lastSeenTime = Instant.ofEpochSecond(0);
-        }
-    }
-
-    public String getPosUpdateTime() {
-        return posUpdateTime.toString();
-    }
-
-    public void setPosUpdateTime(String posUpdateTime) {
-        if (null != posUpdateTime) {
-            this.posUpdateTime = Instant.parse(posUpdateTime);
-        } else {
-            this.posUpdateTime = Instant.ofEpochSecond(0);
-        }
-    }
-
-    public String getBds40SeenTime() {
-        return bds40SeenTime.toString();
-    }
-
-    public void setBds40SeenTime(String bds40SeenTime) {
-        if (null != bds40SeenTime) {
-            this.bds40SeenTime = Instant.parse(bds40SeenTime);
-        } else {
-            this.bds40SeenTime = Instant.ofEpochSecond(0);
-        }
-    }
 }

@@ -17,18 +17,4 @@ public class SpringRedisDemoApplication {
 		SpringApplication.run(SpringRedisDemoApplication.class, args);
 	}
 
-	@Bean
-	public RedisOperations<String, Aircraft>
-	redisOperations(RedisConnectionFactory factory) {
-		Jackson2JsonRedisSerializer<Aircraft> serializer =
-				new Jackson2JsonRedisSerializer<>(Aircraft.class);
-
-		RedisTemplate<String, Aircraft> template = new RedisTemplate<>();
-		template.setConnectionFactory(factory);
-		template.setDefaultSerializer(serializer);
-		template.setKeySerializer(new StringRedisSerializer());
-
-		return template;
-	}
-
 }
